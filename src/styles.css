@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: green;
+    margin: 0;
+    padding: 20px;
+}
+
+main {
+    align-items: center;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 550px;
+    margin: 0 auto;
+    width: 550px;
+    padding: 20px;
+}
+
+.dice-tray {
+    display: grid;
+    gap: 20px;
+    grid-template: auto auto / repeat(5, 1fr);
+}
+
+.die-face {
+    align-items: center;
+    background: #663399;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+}
