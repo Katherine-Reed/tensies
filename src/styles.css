@@ -41,3 +41,23 @@ main {
     height: 50px;
     width: 50px;
 }
+
+.roll-dice {
+    background-color: #5035FF;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2rem;
+    height: 50px;
+    width: 100px;
+}
+
+.roll-dice:focus {
+    outline: none;
+}
+
+.roll-dice:active {
+    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
