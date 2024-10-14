@@ -5,29 +5,54 @@ import {nanoid} from "nanoid"
 export default function App() {
   const [dice, setDice] = useState(allNewDice())
     
-  function allNewDice() {
+  function generateNewDie() {
+    return {
+        value: Math.ceil(Math.random() * 6),
+        isHeld: false,
+        id: nanoid()
+    }
+}
+
+function allNewDice() {
     const newDice = []
     for (let i = 0; i < 10; i++) {
-        newDice.push({
-          value: Math.ceil(Math.random() * 6),
-          isHeld: false,
-          id: nanoid()
-      })
+        newDice.push(generateNewDie())
     }
     return newDice
-  }
+}
 
-  function rollDice() {
-      setDice(allNewDice())
-  }
+function rollDice() {
+  setDice(oldDice => oldDice.map(die => {
+      return die.isHeld ? 
+          die :
+          generateNewDie()
+  }))
+}
+    
+  function holdDice(id) {
+    setDice(oldDice => oldDice.map(die => {
+        return die.id === id ? 
+            {...die, isHeld: !die.isHeld} :
+            die
+    }))
+}
 
-  const diceElements = dice.map(die => <Die key={die.id} value={die.value} isHeld={die.isHeld} />)
+  const diceElements = dice.map(die => (
+    <Die
+      key={die.id}
+      value={die.value}
+      isHeld={die.isHeld}
+      holdDice={() => holdDice(dice.id)}
+    />
+  ))
 
   return (
       <main>
-          <div className="dice-tray">
+          <h1 className="title">Tenzies</h1>
+          <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+          <section className="dice-tray">
               {diceElements}
-          </div>
+          </section>
           <button className="roll-dice" onClick={rollDice}>Roll</button>
       </main>
   )
